@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" >
+    <title>DOC</title>
+</head>
+<body>
+            <button id="grab">Grab</button>
+            <h1>Github Users</h1>
+            <section id="user"></section>
+ 
+ 
+    <script>
+        document.getElementById('grab').addEventListener('click' , loadm);
+        function loadm()
+        {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET' , 'https://api.github.com/users');
+            xhr.onload = function(){
+                if(xhr.status == 200){
+                    var people = JSON.parse(xhr.responseText);
+                    var output = '';
+                    for(var i = 0 ; i < 7-1; i++)
+                    
+                    {   
+                        output+= '<img height="150" weight="100" src="'+people[i].avatar_url+'">';
+                        output+= '<h2>ID: '+people[i].id+'</h2>';
+                        output+= '<h3>Login: '+people[i].login+'</h3>';
+                        
+                    }
+                    document.getElementById('user').innerHTML = output;
+                }
+            }
+            xhr.send();
+        }
+    </script>
+</body>
+</html>
